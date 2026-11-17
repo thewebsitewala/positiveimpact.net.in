@@ -300,12 +300,13 @@ const BestSellers = () => {
 
                         {/* Bottom CTA Row: View detail & Book now */}
                         <div className="border-t border-sand/50 pt-3.5 mt-3 flex items-center justify-between gap-2">
-                          <Link
-                            href="/contact"
-                            className="inline-flex items-center text-[13px] hover:underline underline-offset-4 font-semibold text-espresso transition-colors hover:text-caramel"
+                          <button
+                            type="button"
+                            onClick={() => setSelectedProgram(course)}
+                            className="inline-flex items-center text-[13px] hover:underline underline-offset-4 font-semibold text-espresso transition-colors hover:text-caramel cursor-pointer"
                           >
                             View detail
-                          </Link>
+                          </button>
                           <button
                             type="button"
                             onClick={() => setSelectedProgram(course)}

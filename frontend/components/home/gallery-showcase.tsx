@@ -182,7 +182,7 @@ const GalleryShowcase = () => {
         {/* View Gallery Button */}
         <div className="mt-10 sm:mt-12 text-center">
           <Link
-            href="/gallery"
+            href="#gallery-showcase"
             className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-xs sm:text-sm font-semibold text-white transition-all hover:bg-caramel active:scale-95 shadow-xs"
           >
             View gallery

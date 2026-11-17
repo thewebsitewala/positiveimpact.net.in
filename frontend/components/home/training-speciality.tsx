@@ -171,7 +171,7 @@ const TrainingSpeciality = () => {
                   {/* CTA */}
                   <div className="mt-6">
                     <Link
-                      href="/contact"
+                      href="#best-sellers"
                       className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-semibold text-ink shadow-md transition hover:bg-sand active:scale-[0.98]"
                     >
                       Customise for your team
@@ -221,7 +221,7 @@ const TrainingSpeciality = () => {
                 {/* CTA */}
                 <div className="mt-4">
                   <Link
-                    href="/contact"
+                    href="#best-sellers"
                     className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-normal text-ink shadow-md transition hover:bg-sand active:scale-[0.98]"
                   >
                     Customise for your team
