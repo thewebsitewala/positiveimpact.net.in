@@ -1,17 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import LinkedInButton from "../linkedin-button";
 
 const credentials = [
   { value: "18+", label: "Years Corporate Leadership" },
   { value: "23,000+", label: "Corporate Lives Touched" },
   { value: "12,500+", label: "Facilitation Hours" },
-];
-
-const credentialsPills = [
-  "Strategic Leadership (Wharton Online)",
-  "Dale Carnegie Certified Senior Trainer",
-  "Double Master's (Management & Applied Psychology)",
-  "PhD Scholar in Leadership Studies (IIT Madras)",
 ];
 
 const Founder = () => {
@@ -106,7 +100,7 @@ const Founder = () => {
             </div> */}
 
             {/* CTA */}
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
               <Link
                 href="#best-sellers"
                 className="group inline-flex items-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-xs sm:text-sm font-semibold text-white transition-all hover:bg-caramel active:scale-95 shadow-sm"
@@ -119,6 +113,7 @@ const Founder = () => {
                   →
                 </span>
               </Link>
+              <LinkedInButton label="View LinkedIn profile" className="text-xs sm:text-sm" />
             </div>
           </div>
         </div>

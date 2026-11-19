@@ -34,14 +34,14 @@ const specialities: Speciality[] = [
       "Persuasive business storytelling and executive pitching to articulate vision and influence stakeholders.",
   },
   {
-    id: "sports-based-leadership",
+    id: "sports-based-leadership-program",
     title: "Sports Based Leadership Program",
     image: "/specialities/sports-leadership.jpg",
     description:
       "Action-oriented outdoor sporting challenges to break comfort zones and forge unbreakable team trust.",
   },
   {
-    id: "book-based-leadership",
+    id: "book-based-leadership-programs",
     title: "Book Based Leadership Workshops",
     image: "/specialities/book-workshops.jpg",
     description:
@@ -171,10 +171,10 @@ const TrainingSpeciality = () => {
                   {/* CTA */}
                   <div className="mt-6">
                     <Link
-                      href="#best-sellers"
+                      href={`/training/${item.id}`}
                       className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-semibold text-ink shadow-md transition hover:bg-sand active:scale-[0.98]"
                     >
-                      Customise for your team
+                      Explore program
                       <span aria-hidden="true">→</span>
                     </Link>
                   </div>
@@ -221,10 +221,10 @@ const TrainingSpeciality = () => {
                 {/* CTA */}
                 <div className="mt-4">
                   <Link
-                    href="#best-sellers"
+                    href={`/training/${item.id}`}
                     className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-normal text-ink shadow-md transition hover:bg-sand active:scale-[0.98]"
                   >
-                    Customise for your team
+                    Explore program
                     <span aria-hidden="true">→</span>
                   </Link>
                 </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
+import CurrentYear from "./date";
 
 const programs = [
   { label: "High Impact Leadership", href: "/#best-sellers" },
@@ -71,9 +72,12 @@ const socialLinks = [
 ];
 
 const policyLinks = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms & Conditions", href: "#" },
-  { label: "Refund & Cancellation Policy", href: "#" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  {
+    label: "Refund & Cancellation Policy",
+    href: "/refund-and-cancellation-policy",
+  },
 ];
 
 const Footer: FC = () => {
@@ -275,7 +279,9 @@ const Footer: FC = () => {
 
         {/* Bottom Legal / Policy Bar */}
         <div className="mt-14 border-t border-white/10 pt-8 flex flex-col items-center justify-between gap-4 text-xs text-sand/60 sm:flex-row">
-          <p>© 2026 POSITIVE IMPACT®. All rights reserved.</p>
+          <p>
+            © <CurrentYear /> POSITIVE IMPACT®. All rights reserved.
+          </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
             {policyLinks.map((policy) => (

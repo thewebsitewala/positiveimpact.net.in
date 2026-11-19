@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 /** Minimum time the mark is on screen, so the draw + fill can finish. */
 const MIN_VISIBLE_MS = 1900;
@@ -55,6 +56,18 @@ const Preloader = () => {
       document.body.style.overflow = "";
     };
   }, []);
+
+  // The intro (header + hero entrance) plays once, right after the preloader.
+  // On the first client-side navigation, mark it done so the hero doesn't
+  // replay when the user comes back to the home page. This component stays
+  // mounted in the root layout even after it renders nothing.
+  const pathname = usePathname();
+  const firstPath = useRef(pathname);
+  useEffect(() => {
+    if (pathname !== firstPath.current) {
+      document.documentElement.dataset.introDone = "true";
+    }
+  }, [pathname]);
 
   if (phase === "done") return null;
 

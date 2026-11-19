@@ -69,10 +69,21 @@ body {
 .drop {
   opacity: 0;
   animation: drop 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-  animation-delay: var(--d, 0ms);
+  animation-delay: calc(var(--d, 0ms) + var(--after-preloader));
 }
 
-/* Hold the header and hero entrances until the preloader has gone
+/* Header and hero entrances start the moment the preloader has finished
+   sliding off (its exit is 0.8s, see .preloader), so none of it plays
+   hidden behind the curtain. */
+:root {
+  --after-preloader: 800ms;
+}
+
+.enter {
+  animation-delay: calc(var(--d, 0ms) + var(--after-preloader));
+}
+
+/* Hold the header and hero entrances until the preloader starts to exit
    (Preloader sets data-loaded). */
 html:not([data-loaded]) .drop,
 html:not([data-loaded]) .enter,
@@ -158,4 +169,27 @@ html:not([data-loaded]) .settle {
   *::after {
     transition-duration: 0.01ms !important;
   }
+}
+
+/* After the first navigation the intro has played: show the hero and header
+   straight away instead of replaying their entrance (Preloader sets this). */
+html[data-intro-done] .drop,
+html[data-intro-done] .enter,
+html[data-intro-done] .settle {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+/* Lock page scroll while the enquiry popup is open. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Scrollable without a visible scrollbar (enquiry popup). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { liveCourses } from "@/lib/courses";
+import { courseImage } from "@/lib/course-images";
 
 interface BestSeller {
   id: string;
@@ -15,88 +17,21 @@ interface BestSeller {
   description: string;
 }
 
-const bestSellers: BestSeller[] = [
-  {
-    id: "high-impact-leadership",
-    title: "High Impact Leadership",
-    category: "Leadership Impact",
-    duration: "3 Days · 21 Hours",
-    audience: "Managers, Directors & CXOs",
-    image: "/bestsellers/high-impact-leadership.jpg",
-    description:
-      "Cultivate personal leadership attributes, crisis resilience, compelling vision, and team empowerment through active coaching.",
-  },
-  {
-    id: "first-time-managers",
-    title: "First Time Managers",
-    category: "Managerial Skills",
-    duration: "2 Days · 14 Hours",
-    audience: "New Managers & Team Leads",
-    image: "/bestsellers/first-time-managers.jpg",
-    description:
-      "Transition smoothly from individual contributor to team leader. Covers delegation, constructive feedback, and prioritization.",
-  },
-  {
-    id: "business-storytelling",
-    title: "The Art of Business Storytelling",
-    category: "Communication Excellence",
-    duration: "2 Days · 14 Hours",
-    audience: "Functional Heads & Sales Leaders",
-    image: "/bestsellers/business-storytelling.jpg",
-    description:
-      "Transform complex data and business cases into compelling, high-stakes narratives that inspire executive buy-in.",
-  },
-  {
-    id: "emotional-intelligence",
-    title: "Emotional Intelligence at Work",
-    category: "Leadership Impact",
-    duration: "2 Days · 14 Hours",
-    audience: "People Managers & Executives",
-    image: "/bestsellers/emotional-intelligence.jpg",
-    description:
-      "Master self-awareness, empathy, and emotional agility to navigate interpersonal friction and lead with calm authority.",
-  },
-  {
-    id: "high-performance-teams",
-    title: "Building High Performance Teams",
-    category: "Managerial Skills",
-    duration: "2–3 Days · Blended",
-    audience: "Cross-Functional Teams & Leads",
-    image: "/bestsellers/high-performance-teams.jpg",
-    description:
-      "Foster psychological safety, unshakeable trust, goal clarity, and seamless collaborative execution across hybrid workforces.",
-  },
-  {
-    id: "accelerating-women-leadership",
-    title: "Accelerating Women Leadership",
-    category: "Diversity & Leadership",
-    duration: "2 Days · 14 Hours",
-    audience: "Emerging Women Leaders",
-    image: "/bestsellers/accelerating-women-leadership.jpg",
-    description:
-      "Strengthen strategic poise, assertive communication, executive presence, and personal branding in corporate ecosystems.",
-  },
-  {
-    id: "coaching-skills",
-    title: "Coaching Skills for Managers",
-    category: "Leadership Impact",
-    duration: "2 Days · 14 Hours",
-    audience: "Senior Managers & People Leaders",
-    image: "/bestsellers/coaching-skills.jpg",
-    description:
-      "Move from directing to empowering. Master powerful questioning, deep listening, and the Be-Do-Have coaching model.",
-  },
-  {
-    id: "influencing-stakeholders",
-    title: "Influencing Stakeholders",
-    category: "Communication Excellence",
-    duration: "1–2 Days · Interactive",
-    audience: "Project Managers & Consultants",
-    image: "/bestsellers/influencing-stakeholders.jpg",
-    description:
-      "Gain alignment without positional authority. Navigate corporate dynamics, align competing priorities, and build consensus.",
-  },
-];
+/**
+ * Home Best Sellers: every course flagged `bestseller` in src/lib/courses.ts,
+ * so durations and details always match the course pages.
+ */
+const bestSellers: BestSeller[] = liveCourses
+  .filter((c) => c.bestseller)
+  .map((c) => ({
+    id: c.slug,
+    title: c.title,
+    category: c.category,
+    duration: c.duration,
+    audience: c.audience.slice(0, 2).join(", "),
+    image: courseImage(c.slug),
+    description: c.summary,
+  }));
 
 const BestSellers = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -300,13 +235,12 @@ const BestSellers = () => {
 
                         {/* Bottom CTA Row: View detail & Book now */}
                         <div className="border-t border-sand/50 pt-3.5 mt-3 flex items-center justify-between gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setSelectedProgram(course)}
-                            className="inline-flex items-center text-[13px] hover:underline underline-offset-4 font-semibold text-espresso transition-colors hover:text-caramel cursor-pointer"
+                          <Link
+                            href={`/courses/${course.id}`}
+                            className="inline-flex items-center text-[13px] hover:underline underline-offset-4 font-semibold text-espresso transition-colors hover:text-caramel"
                           >
                             View detail
-                          </button>
+                          </Link>
                           <button
                             type="button"
                             onClick={() => setSelectedProgram(course)}
