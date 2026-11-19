@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { liveCourses as courses } from "@/lib/courses";
 import HeroBackdrop from "../../../components/training/hero-backdrop";
@@ -7,11 +8,11 @@ import EnquirySection from "../../../components/training/enquiry-section";
 import CourseGrid from "../../../components/courses/course-grid";
 import { wrap } from "../../../components/founder/styles";
 
-export const metadata: Metadata = {
-  title: "Leadership & Management Courses | Positive Impact",
-  description:
-    "Bestseller corporate courses in leadership, management and communication: High Impact Leadership, First Time Managers, Business Storytelling and more. In-person, virtual or blended.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Leadership, Management & Communication Courses",
+  description: "Bestseller corporate courses in leadership, management and communication: High Impact Leadership, First Time Managers, Business Storytelling and more. In-person, virtual or blended.",
+  path: "/courses",
+});
 
 export default function CoursesPage() {
   return (

@@ -9,6 +9,7 @@ import {
 } from "../../../../components/training/enquiry-dialog";
 import EnquirySection from "../../../../components/training/enquiry-section";
 import HeroBackdrop from "../../../../components/training/hero-backdrop";
+import { pageMeta } from "@/lib/seo";
 
 export function generateStaticParams() {
   return trainings.map((t) => ({ slug: t.slug }));
@@ -20,10 +21,13 @@ export async function generateMetadata(
   const { slug } = await props.params;
   const t = getTraining(slug);
   if (!t) return {};
-  return {
-    title: `${t.title} | Leadership Training | Positive Impact`,
+  return pageMeta({
+    title: `${t.title} Training for Corporate Teams`,
     description: t.seoDescription,
-  };
+    path: `/training/${t.slug}`,
+    image: t.image,
+    imageAlt: `${t.title} session by Positive Impact`,
+  });
 }
 
 const Check = () => (

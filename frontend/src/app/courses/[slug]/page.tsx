@@ -5,6 +5,10 @@ import CourseHero from "../../../../components/courses/course-hero";
 import CourseBody from "../../../../components/courses/course-body";
 import CourseRelated from "../../../../components/courses/course-related";
 import EnquirySection from "../../../../components/training/enquiry-section";
+import JsonLd from "../../../../components/seo/json-ld";
+import { pageMeta } from "@/lib/seo";
+import { courseSchema } from "@/lib/schema";
+import { courseImage } from "@/lib/course-images";
 
 export function generateStaticParams() {
   return courses.map((c) => ({ slug: c.slug }));
@@ -14,10 +18,13 @@ export async function generateMetadata(props: PageProps<"/courses/[slug]">): Pro
   const { slug } = await props.params;
   const c = getCourse(slug);
   if (!c) return {};
-  return {
-    title: `${c.title}${c.duration ? ` (${c.duration})` : ""} | Corporate Training | Positive Impact`,
+  return pageMeta({
+    title: c.duration ? `${c.title}: ${c.duration} Corporate Course` : `${c.title} Corporate Course`,
     description: c.summary,
-  };
+    path: `/courses/${c.slug}`,
+    image: courseImage(c.slug),
+    imageAlt: `${c.title} workshop by Positive Impact`,
+  });
 }
 
 export default async function CoursePage(props: PageProps<"/courses/[slug]">) {
@@ -27,6 +34,7 @@ export default async function CoursePage(props: PageProps<"/courses/[slug]">) {
 
   return (
     <main id="main">
+      <JsonLd data={courseSchema(course)} />
       <CourseHero course={course} />
       <CourseBody course={course} />
       <EnquirySection

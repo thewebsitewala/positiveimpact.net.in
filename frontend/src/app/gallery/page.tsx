@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Link from "next/link";
 import { gallerySessions } from "@/lib/gallery";
 import SessionGallery from "../../../components/gallery/session-gallery";
@@ -8,11 +9,11 @@ import {
 } from "../../../components/training/enquiry-dialog";
 import EnquirySection from "../../../components/training/enquiry-section";
 
-export const metadata: Metadata = {
-  title: "Gallery: Glimpses of Our Sessions | Positive Impact",
-  description:
-    "Photos from Positive Impact leadership workshops, team bonding and communication programs run for corporate teams.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Gallery: Glimpses of Our Sessions",
+  description: "Photos from Positive Impact leadership workshops, team bonding and communication programs run for corporate teams.",
+  path: "/gallery",
+});
 
 const wrap = "mx-auto max-w-[1600px] px-6 md:px-12 lg:px-20";
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { trainings } from "@/lib/trainings";
@@ -8,11 +9,11 @@ import {
 import EnquirySection from "../../../components/training/enquiry-section";
 import HeroBackdrop from "../../../components/training/hero-backdrop";
 
-export const metadata: Metadata = {
-  title: "Corporate Leadership Trainings | Positive Impact | India",
-  description:
-    "Six training specialities for corporate teams: managerial skills, leadership impact, communication excellence, sports-based, book-based and equine-assisted leadership programs.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Corporate Leadership Training Programs",
+  description: "Six training specialities for corporate teams: managerial skills, leadership impact, communication excellence, sports-based, book-based and equine-assisted leadership programs.",
+  path: "/training",
+});
 
 const formats = ["In-person", "Virtual live online", "Outbound", "Blended"];
 
